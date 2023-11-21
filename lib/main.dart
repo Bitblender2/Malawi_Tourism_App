@@ -146,7 +146,7 @@ class CategoryDetailsPage extends StatelessWidget {
       'assets/images/mulanje3.jpg',
     ],
     'Lakes and Rivers': [
-      'assets/images/mulanje.jpg',
+      'assets/images/lake1.png',
 
     ],
     'Wildlife': [
