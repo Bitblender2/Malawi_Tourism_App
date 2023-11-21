@@ -36,6 +36,8 @@ class LandingPage extends StatelessWidget {
                 image: DecorationImage(
                   image: AssetImage('assets/images/logo2.png'), // Replace 'assets/logo.png' with the path to your logo image
                   fit: BoxFit.contain,
+
+
                 ),
               ),
             ),
@@ -88,7 +90,7 @@ class CategoriesPage extends StatelessWidget {
           GestureDetector(
             onTap: () {
               // Add functionality for the second category here
-              navigateToCategoryDetails(context, 'lakes and rivers ');
+              navigateToCategoryDetails(context, 'Lakes and Rivers ');
             },
             child: const CategoryWidget('Lakes and Rivers'),
           ),
@@ -106,7 +108,7 @@ class CategoriesPage extends StatelessWidget {
           GestureDetector(
             onTap: () {
               // Add functionality for the fourth category here
-              navigateToCategoryDetails(context, 'Hotels and lodges ');
+              navigateToCategoryDetails(context, 'Hotels and Lodges ');
             },
             child: const CategoryWidget('Hotels and Lodges'),
           ),
@@ -115,9 +117,9 @@ class CategoriesPage extends StatelessWidget {
           GestureDetector(
             onTap: () {
               // Add functionality for the fifth category here
-              navigateToCategoryDetails(context, 'culture ');
+              navigateToCategoryDetails(context, 'Culture ');
             },
-            child: const CategoryWidget('culture'),
+            child: const CategoryWidget('Culture'),
           ),
         ],
       ),
@@ -137,11 +139,63 @@ class CategoryDetailsPage extends StatelessWidget {
 
   CategoryDetailsPage(this.categoryName, {super.key});
 
+  final Map<String,List<String>>categoryImages = {
+    'Mountains': [
+      'assets/images/mulanje1.jpg',
+      'assets/images/mulanje2.jpg',
+      'assets/images/mulanje3.jpg',
+    ],
+    'Lakes and Rivers': [
+      'assets/images/mulanje.jpg',
+
+    ],
+    'Wildlife': [
+      '',
+      '',
+      '',
+    ],
+
+    'Hotels and Lodges': [
+      '',
+      '',
+      '',
+    ],
+    'culture': [
+      '',
+      '',
+      '',
+    ],
+
+  };
+
   @override
   Widget build(BuildContext context) {
+    //map of category name to image path
+
+    //get the list of image path based on the category
+  final imagePaths= categoryImages[categoryName]?? [];
+
+  //print information about images
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryName),
+      ),
+      body: ListView.builder(
+        itemCount: imagePaths.length,
+        itemBuilder: (context, index){
+          final imagePath = imagePaths[index];
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              imagePath,
+    //          imagePaths[index],
+              fit: BoxFit.cover,
+
+            ),
+          );
+        },
       ),
     );
   }
@@ -156,7 +210,7 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        width: double.maxFinite,
+        width: double.infinity,
         height: 100.0,
         color: Colors.blue,
         child: Center(
